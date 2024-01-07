@@ -109,10 +109,10 @@ export const AdvertiserNavbar = () => {
                   Manage
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link href="/Campaigns">
+                  <MDBDropdownItem link  onClick={() => redirect("/Campaigns")}>
                     My Campaigns
                   </MDBDropdownItem>
-                  <MDBDropdownItem link href="/MyCollaborations">
+                  <MDBDropdownItem link  onClick={() => redirect("/MyCollaborations")}>
                     My Colloborations
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
@@ -243,7 +243,7 @@ export const AdvertiserNavbar = () => {
                   <MDBDropdownItem link onClick={() => redirect("/ViewProfile")}>
                     View Profile
                   </MDBDropdownItem>
-                  <MDBDropdownItem link href="/Settings">
+                  <MDBDropdownItem link onClick={() => redirect("/Settings")}>
                     Account Settings
                   </MDBDropdownItem>
                   <MDBDropdownItem link onClick={logOut}>
