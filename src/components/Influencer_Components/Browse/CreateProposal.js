@@ -25,7 +25,7 @@ import { bufferToBase64 } from "../../../utils";
 import io from "socket.io-client";
 import defaultImage from "../default.jpg";
 import defaultImage1 from "../default1.png";
-var socket = io.connect("http://localhost:3002");
+var socket = io.connect("https://tata-mesagginn.onrender.com/");
 function formatDateAndHour(dateStr) {
   let date = new Date(dateStr);
   let year = date.getFullYear();
