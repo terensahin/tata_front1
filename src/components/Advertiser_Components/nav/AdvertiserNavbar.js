@@ -30,7 +30,7 @@ import io from "socket.io-client";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "universal-cookie";
 import fetchCampaigns from "../Fetch/fetchCampaigns";
-var socket = io.connect("http://localhost:3002");
+var socket = io.connect("https://tata-mesagginn.onrender.com/");
 export const AdvertiserNavbar = () => {
   const navigate = useNavigate();
   const cookies = new Cookies(null, { path: "/" });
