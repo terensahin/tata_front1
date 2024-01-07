@@ -27,7 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import io from "socket.io-client";
 import { useEffect } from "react";
-var socket = io.connect("http://localhost:3002");
+var socket = io.connect("https://tata-mesagginn.onrender.com/");
 
 export const InfluencerNavbar = () => {
   const [notList, setNotList] = useState([]);
