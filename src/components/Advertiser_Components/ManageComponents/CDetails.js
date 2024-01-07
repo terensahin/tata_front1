@@ -29,7 +29,7 @@ import fetchCollaboration from "./fetchCollaboration";
 import axios from "axios";
 import getAllCampaignsBYid from "../Fetch/getAllCampaignsBYid";
 import { bufferToBase64 } from "../../../utils";
-var socket = io.connect("http://localhost:3002");
+var socket = io.connect("https://tata-mesagginn.onrender.com/");
 function formatDateAndHour(dateStr) {
   let date = new Date(dateStr);
   let year = date.getFullYear();
