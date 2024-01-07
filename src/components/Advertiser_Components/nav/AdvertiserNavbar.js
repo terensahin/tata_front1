@@ -240,7 +240,7 @@ export const AdvertiserNavbar = () => {
                   {cookies.get("full_name")}
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link href="/ViewProfile">
+                  <MDBDropdownItem link onClick={() => redirect("/ViewProfile")}>
                     View Profile
                   </MDBDropdownItem>
                   <MDBDropdownItem link href="/Settings">
