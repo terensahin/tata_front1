@@ -78,7 +78,7 @@ const MyCampaigns = () => {
   }
   const deleteCamp = (id) => {
     axios
-      .delete(`https://tata-backend.onrender.com/api/deleteCampaign/${id}`, {
+      .put(`https://tata-backend.onrender.com/api/deleteCampaign/${id}`, {
         headers,
       })
       .then((response) => {
@@ -211,7 +211,7 @@ const MyCampaigns = () => {
                         style={{ color: "red" }}
                         className="fas fa-circle-xmark"
                       ></i>{" "}
-                      Delete
+                      Cancel
                     </MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>

@@ -14,7 +14,7 @@ import {
   MDBBadge,
   MDBSpinner,
 } from "mdb-react-ui-kit";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import fetchCampaign from "./fetchCampaign";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "universal-cookie";
@@ -51,6 +51,7 @@ export default function CampaignDetails() {
   const setProposals = (e) => {
     setProposal(e.target.value);
   };
+  const navigate = useNavigate();
   const join_camp = async (data) => {
     await socket.emit("join_camp", {
       user: user_id,
@@ -355,7 +356,7 @@ export default function CampaignDetails() {
                   333 Reviews
                 </p>
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn outline className="ms-1">
+                  <MDBBtn outline className="ms-1" onClick={() => navigate("/ShowAllMessages")}>
                     Message
                   </MDBBtn>
                 </div>
