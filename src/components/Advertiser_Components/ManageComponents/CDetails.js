@@ -422,10 +422,9 @@ const CDetails = () => {
               <MDBCardBody>
                 <MDBCardBody className="square border border-3">
                   <MDBRow>
-                    <MDBCardHeader style={{ fontSize: "15px" }}>
-                      <Link to={`/ShowProfile/${data.belongsToUser.user_id}`}>
-                        📊 {data.belongsToUser.name} | 🎨 {data.belongsToUser.email} | 💡 {data.belongsToUser.user_name}
-                      </Link>
+                    <MDBCardHeader style={{ fontSize: "15px", cursor: "pointer" }}
+                      onClick={() => navigate(`/ShowProfile/${data.belongsToUser.user_id}`)}>
+                      📊 {data.belongsToUser.name} | 🎨 {data.belongsToUser.email} | 💡 {data.belongsToUser.user_name}
                     </MDBCardHeader>
                     <MDBCardBody>
                       <MDBCardText style={{ marginTop: "10px" }}>
