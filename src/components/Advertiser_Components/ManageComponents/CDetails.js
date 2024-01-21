@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import React from "react";
 import { MDBTextArea } from "mdb-react-ui-kit";
 import io from "socket.io-client";
@@ -52,6 +52,7 @@ const CDetails = () => {
     ["collaboration66", user_id, token],
     fetchCollaboration
   );
+  const navigate = useNavigate();
   function formatDateAndHour(dateStr) {
     let date = new Date(dateStr);
     let year = date.getFullYear();
@@ -170,8 +171,8 @@ const CDetails = () => {
                         src={
                           c_data.campaign_image
                             ? `data:image/jpeg;base64,${bufferToBase64(
-                                c_data.campaign_image.data
-                              )}`
+                              c_data.campaign_image.data
+                            )}`
                             : defaultImage1
                         }
                         fluid
@@ -330,8 +331,8 @@ const CDetails = () => {
                     src={
                       c_data.user.user_image
                         ? `data:image/jpeg;base64,${bufferToBase64(
-                            c_data.user.user_image.data
-                          )}`
+                          c_data.user.user_image.data
+                        )}`
                         : defaultImage // Provide a placeholder image
                     }
                     alt="avatar"
@@ -422,9 +423,9 @@ const CDetails = () => {
                 <MDBCardBody className="square border border-3">
                   <MDBRow>
                     <MDBCardHeader style={{ fontSize: "15px" }}>
-                      📊 {data.belongsToUser.name} | 🎨
-                      {data.belongsToUser.email} | 💡{" "}
-                      {data.belongsToUser.user_name}
+                      <Link to={`/ShowProfile/${data.belongsToUser.user_id}`}>
+                        📊 {data.belongsToUser.name} | 🎨 {data.belongsToUser.email} | 💡 {data.belongsToUser.user_name}
+                      </Link>
                     </MDBCardHeader>
                     <MDBCardBody>
                       <MDBCardText style={{ marginTop: "10px" }}>
