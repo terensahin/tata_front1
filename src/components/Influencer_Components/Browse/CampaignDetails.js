@@ -113,7 +113,7 @@ export default function CampaignDetails() {
       });
   };
   return (
-    <section style={{ backgroundColor: "#eee" }}>
+    <section style={{ backgroundColor: "" }}>
       <MDBContainer className="py-5" key={campaign}>
         <ToastContainer></ToastContainer>
         <MDBRow>
@@ -431,20 +431,22 @@ export default function CampaignDetails() {
         </MDBRow>
 
         <MDBRow
-          style={{ marginTop: "50px", marginLeft: "20px", marginRight: "20px" }}
+          style={{ marginTop: "10px", marginLeft: "0px", marginRight: "0px" }}
         >
           {campaign.status === "Ended" && result2.data.exists === 0 && (
             <MDBRow
               style={{
-                marginTop: "50px",
-                marginLeft: "20px",
-                marginRight: "20px",
+                marginTop: "0px",
+                marginLeft: "0px",
+                marginRight: "0px",
               }}
             >
               <MDBCol>
-                <div className="rating-box">
-                  <header>How was your experience?</header>
-                  <div className="stars">
+                <MDBRow style={{width: "740px", marginLeft: "-25px"}}>
+                          <div className="rating-box bg-secondary p-2 text-dark bg-opacity-10 pb-5
+              " style={{ backgroundColor: "#54B4D3", }}>
+                  <header style={{ color: '#6677ea' }}>How was your experience?</header>
+                  <div className="stars" style={{ display: 'flex', justifyContent: 'center' }}>
                     {[1, 2, 3, 4, 5].map((index) => (
                       <i
                         key={index}
@@ -464,8 +466,10 @@ export default function CampaignDetails() {
                     onChange={(e) => setMessage(e.target.value)}
                   />
                 </div>
+                </MDBRow>
+                
               </MDBCol>
-              <MDBRow style={{ marginTop: "20px" }}>
+              <MDBRow style={{ marginTop: "20px", margin: "50px", marginLeft : "600px"}}>
                 <MDBCol>
                   <MDBBtn disabled={message.length < 50} onClick={createRating}>
                     Apply
