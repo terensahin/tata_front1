@@ -54,12 +54,12 @@ const FooterUniversal = () => {
               <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
                 <h6 className='text-uppercase /*  */fw-bold mb-4'>Products</h6>
                 <p>
-                  <a href='#!' className='text-reset'>
+                  <a href='https://tata-front-end.onrender.com/' className='text-reset'>
                     Influencers
                   </a>
                 </p>
                 <p>
-                  <a href='#!' className='text-reset'>
+                  <a href='https://tata-front-end.onrender.com/' className='text-reset'>
                     Advertisers
                   </a>
                 </p>
@@ -68,22 +68,22 @@ const FooterUniversal = () => {
               <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
                 <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
                 <p>
-                  <a href='#!' className='text-reset'>
+                  <a  href='https://tata-front-end.onrender.com/' className='text-reset'>
                     Pricing
                   </a>
                 </p>
                 <p>
-                  <a href='#!' className='text-reset'>
+                  <a  href='https://tata-front-end.onrender.com/' className='text-reset'>
                     Settings
                   </a>
                 </p>
                 <p>
-                  <a href='#!' className='text-reset'>
+                  <a  href='https://tata-front-end.onrender.com/' className='text-reset'>
                     Orders
                   </a>
                 </p>
                 <p>
-                  <a href='#!' className='text-reset'>
+                  <a  href='https://tata-front-end.onrender.com/' className='text-reset'>
                     Help
                   </a>
                 </p>
@@ -100,11 +100,9 @@ const FooterUniversal = () => {
                   info@example.com
                 </p>
                 <p>
-                  <MDBIcon icon='phone' className='me-3' /> + 01 234 567 88
+                  <MDBIcon icon='phone' className='me-3' /> + 90 531 854 08 02
                 </p>
-                <p>
-                  <MDBIcon icon='print' className='me-3' /> + 01 234 567 89
-                </p>
+        
               </MDBCol>
             </MDBRow>
           </MDBContainer>
@@ -115,7 +113,7 @@ const FooterUniversal = () => {
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
         >
           © 2023 Copyright:
-          <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
+          <a className='text-reset fw-bold' href='https://tata-front-end.onrender.com/'>
             tata.com
           </a>
         </div>
