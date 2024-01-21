@@ -163,7 +163,7 @@ const NewProfile = () => {
             }}
           >
             <MDBCol >
-              <MDBRow style={{width: "885px"}}><div className="rating-box bg-secondary p-2 text-dark bg-opacity-10 pb-5
+              <MDBRow style={{width: "860px", marginLeft: "10px"}}><div className="rating-box bg-secondary p-2 text-dark bg-opacity-10 pb-5
               " style={{ backgroundColor: "#54B4D3", }}>
               <header style={{ color: '#6677ea' }}>How was your experience?</header>
 
