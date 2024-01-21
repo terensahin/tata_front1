@@ -14,17 +14,11 @@ import {
   MDBBadge,
   MDBSpinner,
 } from "mdb-react-ui-kit";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import fetchCampaign from "./fetchCampaign";
 import { useQuery } from "@tanstack/react-query";
-import {
-  faStar,
-  faThumbsUp,
-  faStarHalfAlt,
-} from "@fortawesome/free-solid-svg-icons";
 import Cookies from "universal-cookie";
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { bufferToBase64 } from "../../../utils";
@@ -57,7 +51,6 @@ export default function CampaignDetails() {
   const setProposals = (e) => {
     setProposal(e.target.value);
   };
-  const navigate = useNavigate();
   const join_camp = async (data) => {
     await socket.emit("join_camp", {
       user: user_id,
@@ -65,19 +58,8 @@ export default function CampaignDetails() {
       notification: data,
     });
   };
-  var rating_sum = 0;
-  var rating_average = 0;
-  var counter = 0;
- var review_counter = result.data.campaign[0].user.rating.length;
-  if (result.data.campaign[0].user.rating != undefined) {
-    for (var i = 0; i < result.data.campaign[0].user.rating.length; i++) {
-      rating_sum += result.data.campaign[0].user.rating[i].rating;
-      if (result.data.campaign[0].user.rating[i].rating === 5) {
-        counter++;
-      }
-    }
-    rating_average = rating_sum / result.data.campaign[0].user.rating.length;
-  }
+
+  //console.log(proposal);
   const userid = cookies.get("user_id");
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -364,35 +346,16 @@ export default function CampaignDetails() {
                 <p className="mb-1 mt-2 fw-bold">{campaign.user.name}</p>
                 <p className="text-muted mb-4">@{campaign.user.user_name}</p>
                 <p className="text-muted mb-4">
-                <MDBIcon>
-                    <div className="d-flex">
-                      {(() => {
-                        const stars = [];
-                        for (var i = 0; i < Math.floor(rating_average); i++) {
-                          stars.push(
-                            <MDBCol md="1" key={i} style={{marginRight:"10px"}}> {/* Add margin to create space */}
-                            <FontAwesomeIcon icon={faStar} />
-                          </MDBCol>
-                          );
-                        }
-
-                        // Check if there's a half star to add
-                        if (rating_average % 1 >= 0.5) {
-                          stars.push(
-                            <MDBCol md="1" key={"half"} style={{marginRight:"10px"}}> {/* Add margin to create space */}
-                            <FontAwesomeIcon icon={faStarHalfAlt} />
-                          </MDBCol>
-                          );
-                        }
-
-                        return stars;
-                      })()}
-                      </div>
-                    </MDBIcon>{""}
-                  ({rating_average.toFixed(1)}) {review_counter} Reviews
+                  <MDBIcon>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-stroke"></i>
+                  </MDBIcon>{" "}
+                  333 Reviews
                 </p>
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn outline className="ms-1" onClick={() => navigate("/ShowAllMessages")}>
+                  <MDBBtn outline className="ms-1">
                     Message
                   </MDBBtn>
                 </div>
