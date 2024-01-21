@@ -205,7 +205,7 @@ const MyCampaigns = () => {
                     </MDBDropdownItem>
                     <MDBDropdownItem
                       link
-                      onClick={() => deleteCamp(row.campaign_id, "Delete")}
+                      onClick={() => pushStatus(row.campaign_id, "Disabled")}
                     >
                       <i
                         style={{ color: "red" }}
