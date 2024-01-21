@@ -54,8 +54,6 @@ function BrowseInf({ searchTerm, filters }) {
     key1: "value1",
   };
 
-  console.log("hashmap", hashMap);
-
   useEffect(() => {
     setCurrentPage(1);
   }, [filters, searchTerm]);
@@ -71,7 +69,6 @@ function BrowseInf({ searchTerm, filters }) {
   }
 
   const influencers = result.data.influencer;
-  console.log("influencers: ", influencers);
   const collabs = result.data;
 
   for (var i = 0; i < collabs.influencer.length; i++) {
@@ -83,10 +80,8 @@ function BrowseInf({ searchTerm, filters }) {
   // Filter influencers based on the search term, collaborations completed, subscribers, and rating
   // Filter influencers based on the search term and filters
   const filteredInfluencers = influencers.filter((influencer) => {
-    // console.log("totalRating: ", totalRating);
-    // console.log("influencer.name: ", influencer.user_name);
     const matchesRatings =
-      !filters.rating || calculateAverageRating(influencer) >= filters.rating;
+      !filters.rating || calculateAverageRating(influencer) > filters.rating;
 
     const matchesSearchTerm = influencer.user_name
       .toLowerCase()
@@ -95,7 +90,7 @@ function BrowseInf({ searchTerm, filters }) {
     // Apply filters based on the selected filters object
     const matchesTotalProposals =
       !filters.totalProposals ||
-      hashMap[influencer.user_id] >= filters.totalProposals;
+      hashMap[influencer.user_id] > filters.totalProposals;
 
     // const matchesSubscribers =
     //   !filters.subscribers || influencer.subscribers <= filters.subscribers;

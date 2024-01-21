@@ -82,7 +82,7 @@ const MyCampaigns = () => {
         headers,
       })
       .then((response) => {
-        toast.success("Success message here", {
+        toast.success("Successfully Deleted.", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 4000,
         });
