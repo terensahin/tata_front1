@@ -23,6 +23,12 @@ import Cookies from "universal-cookie";
 import { bufferToBase64, formatDateAndHour } from "../../../utils";
 import defaultImage from "../default1.png";
 import defaultImage1 from "../default.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStar,
+  faThumbsUp,
+  faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -33,12 +39,15 @@ export default function CampaignDetails() {
   const cookies = new Cookies(null, { path: "/" });
   const token = cookies.get("token");
   const user_id = cookies.get("user_id");
+ 
 
   const { id } = useParams();
   const [selectedRating, setSelectedRating] = useState(0);
   const handleStarClick = (index) => {
     setSelectedRating(index);
   };
+  console.log("id",id)
+  console.log("user_id",user_id)
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -48,14 +57,33 @@ export default function CampaignDetails() {
     user_id: user_id,
     toUser_id: id,
   };
-  const result2 = useQuery(["abcd", id, token, provide], fetchComments);
   const result = useQuery(["abcd", id, token], fetchCampaign);
+  const result2 = useQuery(["abcd", id, token, provide], fetchComments);
+  
   if (result.isLoading || result2.isLoading) {
     return (
       <MDBSpinner role="status">
         <span className="visually-hidden">Loading...</span>
       </MDBSpinner>
     );
+  }
+  
+
+  
+ 
+  console.log("camp",result);
+  var rating_sum = 0;
+  var rating_average = 0;
+  var counter = 0;
+ var review_counter = result.data.campaign[0].user.rating.length;
+  if (result.data.campaign[0].user.rating != undefined) {
+    for (var i = 0; i < result.data.campaign[0].user.rating.length; i++) {
+      rating_sum += result.data.campaign[0].user.rating[i].rating;
+      if (result.data.campaign[0].user.rating[i].rating === 5) {
+        counter++;
+      }
+    }
+    rating_average = rating_sum / result.data.campaign[0].user.rating.length;
   }
 
   var campaign = result.data.campaign[0];
@@ -314,13 +342,32 @@ export default function CampaignDetails() {
 
                 <p className="text-muted mb-4">@{campaign.user.user_name}</p>
                 <p className="text-muted mb-4">
-                  <MDBIcon>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-stroke"></i>
-                  </MDBIcon>{" "}
-                  333 Reviews
+                <MDBIcon>
+                    <div className="d-flex">
+                      {(() => {
+                        const stars = [];
+                        for (var i = 0; i < Math.floor(rating_average); i++) {
+                          stars.push(
+                            <MDBCol md="1" key={i} style={{marginRight:"10px"}}> {/* Add margin to create space */}
+                            <FontAwesomeIcon icon={faStar} />
+                          </MDBCol>
+                          );
+                        }
+
+                        // Check if there's a half star to add
+                        if (rating_average % 1 >= 0.5) {
+                          stars.push(
+                            <MDBCol md="1" key={"half"} style={{marginRight:"10px"}}> {/* Add margin to create space */}
+                            <FontAwesomeIcon icon={faStarHalfAlt} />
+                          </MDBCol>
+                          );
+                        }
+
+                        return stars;
+                      })()}
+                      </div>
+                    </MDBIcon>{""}
+                    ({rating_average.toFixed(1)}) {review_counter} Reviews
                 </p>
                 <div className="d-flex justify-content-center mb-2">
                   <MDBBtn
