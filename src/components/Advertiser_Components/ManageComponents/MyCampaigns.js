@@ -228,6 +228,7 @@ const MyCampaigns = () => {
   }
   let lastIndex = campaigns.length;
   data.push([]);
+  data.push([]);
   return (
     <div
       style={{
