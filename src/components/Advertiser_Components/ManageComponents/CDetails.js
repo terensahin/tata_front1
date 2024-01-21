@@ -1,8 +1,14 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import React from "react";
 import { MDBTextArea } from "mdb-react-ui-kit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import io from "socket.io-client";
 import { MDBBtn } from "mdb-react-ui-kit";
+import {
+  faStar,
+  faThumbsUp,
+  faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   MDBCol,
   MDBContainer,
@@ -26,6 +32,7 @@ import Cookies from "universal-cookie";
 import { useQuery } from "@tanstack/react-query";
 import fetchCampaigns from "../Fetch/fetchCampaigns";
 import fetchCollaboration from "./fetchCollaboration";
+import fetchRatings from "../ViewProfileComponents/fetchRatings";
 import axios from "axios";
 import getAllCampaignsBYid from "../Fetch/getAllCampaignsBYid";
 import { bufferToBase64 } from "../../../utils";
@@ -48,10 +55,12 @@ const CDetails = () => {
   const { id } = useParams();
   const result = useQuery(["proposal", id, token], fetchProposal);
   const c_result = useQuery(["xx", id, token], getAllCampaignsBYid);
+  const result2 = useQuery(["rating", user_id, token], fetchRatings);
   const collab = useQuery(
     ["collaboration66", user_id, token],
     fetchCollaboration
   );
+
   const navigate = useNavigate();
   function formatDateAndHour(dateStr) {
     let date = new Date(dateStr);
@@ -83,6 +92,26 @@ const CDetails = () => {
         <span className="visually-hidden">Loading...</span>
       </MDBSpinner>
     );
+  }
+  if (result2.isLoading) {
+    return (
+      <MDBSpinner role="status">
+        <span className="visually-hidden">Loading...</span>
+      </MDBSpinner>
+    );
+  }
+  var rating_sum = 0;
+  var rating_average = 0;
+  var counter = 0;
+  var review_counter = result2.data.rating.length;
+  if (result2 != undefined) {
+    for (var i = 0; i < result2.data.rating.length; i++) {
+      rating_sum += result2.data.rating[i].rating;
+      if (result2.data.rating[i].rating === 5) {
+        counter++;
+      }
+    }
+    rating_average = rating_sum / result2.data.rating.length;
   }
   if (collab.isLoading) {
     return (
@@ -344,12 +373,31 @@ const CDetails = () => {
                   <p className="text-muted mb-4">@{c_data.user.user_name}</p>
                   <p className="text-muted mb-4">
                     <MDBIcon>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star-half-stroke"></i>
-                    </MDBIcon>{" "}
-                    333 Reviews
+                    <div className="d-flex">
+                      {(() => {
+                        const stars = [];
+                        for (var i = 0; i < Math.floor(rating_average); i++) {
+                          stars.push(
+                            <MDBCol md="1" key={i} style={{marginRight:"10px"}}> {/* Add margin to create space */}
+                            <FontAwesomeIcon icon={faStar} />
+                          </MDBCol>
+                          );
+                        }
+
+                        // Check if there's a half star to add
+                        if (rating_average % 1 >= 0.5) {
+                          stars.push(
+                            <MDBCol md="1" key={"half"} style={{marginRight:"10px"}}> {/* Add margin to create space */}
+                            <FontAwesomeIcon icon={faStarHalfAlt} />
+                          </MDBCol>
+                          );
+                        }
+
+                        return stars;
+                      })()}
+                      </div>
+                    </MDBIcon>
+                    ({rating_average.toFixed(1)}) {review_counter} Reviews
                   </p>
                   <div className="d-flex justify-content-center mb-2">
                     <MDBBtn outline className="ms-1" onClick={() => navigate("/ShowAllMessages")}>
