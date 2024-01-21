@@ -33,6 +33,7 @@ export default function MyProposals() {
   const token = cookies.get("token");
   const id = cookies.get("user_id");
   const result = useQuery(["proposalIndidual", id, token], fetchProposal);
+  const [searchTerm, setSearchTerm] = useState("");
 
   if (result.isLoading) {
     return (
@@ -41,8 +42,13 @@ export default function MyProposals() {
       </MDBSpinner>
     );
   }
-  var data = result.data.proposal;
-  console.log(data);
+
+  const data = result.data.proposal.filter((item) =>
+    item.belongsToCampaign.campaign_header
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
+
   const redirect = (path) => {
     navigate(path);
   };
@@ -54,7 +60,11 @@ export default function MyProposals() {
       <>
         <div className="d-flex justify-content-center mt-4">
           <MDBInputGroup className="w-50">
-            <MDBInput label="Search" />
+            <MDBInput
+              label="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <MDBBtn rippleColor="dark">
               <MDBIcon icon="search" />
             </MDBBtn>
