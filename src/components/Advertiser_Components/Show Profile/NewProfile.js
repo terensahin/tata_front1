@@ -25,6 +25,7 @@ import getAllCampaignsBYid from "../Fetch/getAllCampaignsBYid";
 import fetchRatings from "../ViewProfileComponents/fetchRatings";
 const NewProfile = () => {
   const [message, setMessage] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const cookies = new Cookies(null, { path: "/" });
   const token = cookies.get("token");
   const user_id = cookies.get("user_id");
@@ -92,6 +93,7 @@ const NewProfile = () => {
           autoClose: 4000,
         });
       });
+      setIsButtonDisabled(true); // Disable button after click
   };
   return (
     <div>
@@ -156,11 +158,14 @@ const NewProfile = () => {
               marginTop: "50px",
               marginLeft: "20px",
               marginRight: "20px",
+              marginBottom: "20px",
+          
             }}
           >
             <MDBCol>
               <div className="rating-box">
-                <header>How was your experience?</header>
+              <header style={{ color: '#6677ea' }}>How was your experience?</header>
+
                 <div className="stars">
                   {[1, 2, 3, 4, 5].map((index) => (
                     <i
@@ -181,9 +186,9 @@ const NewProfile = () => {
                 />
               </div>
             </MDBCol>
-            <MDBRow style={{ marginTop: "20px" }}>
+            <MDBRow style={{ marginTop: "20px", margin: "50px"}}>
               <MDBCol>
-                <MDBBtn disabled={message.length < 50} onClick={createRating}>
+                <MDBBtn disabled={isButtonDisabled || message.length < 50} onClick={createRating}>
                   Apply
                 </MDBBtn>
               </MDBCol>
