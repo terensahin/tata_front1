@@ -92,7 +92,7 @@ export default function MyCollaborations() {
                       style={{ cursor: "pointer" }}
                       className="hover-link"
                     >
-                      {data.belongToCampaign.campaign_description}
+                      {data.belongToCampaign.campaign_header}
                     </a>
                   </td>
                   <td>
