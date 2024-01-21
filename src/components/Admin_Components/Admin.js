@@ -4,6 +4,7 @@ import Influencers from "./Influencers";
 import Users from "./Users";
 import Advertisers from "./Advertisers";
 import Campaigns from "./Campaigns";
+import EditProfile from "./EditProfile";
 
 const Admin = () => {
   return (
@@ -20,6 +21,8 @@ const Admin = () => {
           element={<Advertisers></Advertisers>}
         ></Route>
         <Route path="/Campaigns" element={<Campaigns></Campaigns>}></Route>
+        <Route path="/editUser/:id" element={<EditProfile></EditProfile>}></Route>
+        <Route path="*" element={<Users></Users>}></Route>
       </Routes>
     </div>
   );
