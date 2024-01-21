@@ -20,7 +20,7 @@ import io from "socket.io-client";
 import defaultImage from "../../Advertiser_Components/default.jpg";
 import { useRef, useState, useEffect } from "react";
 import getMessage from "../../Advertiser_Components/Message/getMessage";
-import { bufferToBase64 } from "../../../utils";
+import { bufferToBase64, formatDateAndHour } from "../../../utils";
 var socket = io.connect("https://tata-mesagginn.onrender.com");
 export default function App() {
   const hashMap = {
@@ -54,6 +54,7 @@ export default function App() {
       const oldMessages = messageData.data.messages.map((msg) => ({
         user: msg.user_name,
         message: msg.message_body,
+        createdAt: msg.createdAt,
       }));
       setMessageListe(oldMessages);
     }
@@ -131,6 +132,8 @@ export default function App() {
     }));
     setMessageListe((list) => [...list, ...oldMessages]);
   };
+
+  console.log(messageList);
 
   const sendMessage = async () => {
     if (!message.trim()) {
@@ -255,7 +258,10 @@ export default function App() {
                           <MDBCardHeader className="d-flex justify-content-between p-3">
                             <p className="fw-bold mb-0">{val.user}</p>
                             <p className="text-muted small mb-0">
-                              <MDBIcon far icon="clock" /> {val.created_at}
+                              <MDBIcon far icon="clock" />{" "}
+                              {val.created_at
+                                ? val.created_at
+                                : formatDateAndHour(val.createdAt)}
                             </p>
                           </MDBCardHeader>
                           <MDBCardBody>
@@ -284,7 +290,10 @@ export default function App() {
                           <MDBCardHeader className="d-flex justify-content-between p-3">
                             <p className="fw-bold mb-0">{val.user}</p>
                             <p className="text-muted small mb-0">
-                              <MDBIcon far icon="clock" /> {val.created_at}
+                              <MDBIcon far icon="clock" />{" "}
+                              {val.created_at
+                                ? val.created_at
+                                : formatDateAndHour(val.createdAt)}
                             </p>
                           </MDBCardHeader>
                           <MDBCardBody>

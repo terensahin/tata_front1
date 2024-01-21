@@ -19,7 +19,7 @@ import fetchCollaboration from "../ManageComponents/fetchCollaboration";
 import io from "socket.io-client";
 import { useRef, useState, useEffect } from "react";
 import getMessage from "./getMessage";
-import { bufferToBase64 } from "../../../utils";
+import { bufferToBase64, formatDateAndHour } from "../../../utils";
 import defaultImage from "../default.jpg";
 import { set } from "date-fns";
 
@@ -61,6 +61,7 @@ export default function App() {
       const oldMessages = messageData.data.messages.map((msg) => ({
         user: msg.user_name,
         message: msg.message_body,
+        createdAt: msg.createdAt,
       }));
       setMessageListe(oldMessages);
     }
@@ -264,7 +265,10 @@ export default function App() {
                           <MDBCardHeader className="d-flex justify-content-between p-3">
                             <p className="fw-bold mb-0">{val.user}</p>
                             <p className="text-muted small mb-0">
-                              <MDBIcon far icon="clock" /> {val.created_at}
+                              <MDBIcon far icon="clock" />{" "}
+                              {val.created_at
+                                ? val.created_at
+                                : formatDateAndHour(val.createdAt)}
                             </p>
                           </MDBCardHeader>
                           <MDBCardBody>
@@ -292,7 +296,10 @@ export default function App() {
                           <MDBCardHeader className="d-flex justify-content-between p-3">
                             <p className="fw-bold mb-0">{val.user}</p>
                             <p className="text-muted small mb-0">
-                              <MDBIcon far icon="clock" /> {val.created_at}
+                              <MDBIcon far icon="clock" />{" "}
+                              {val.created_at
+                                ? val.created_at
+                                : formatDateAndHour(val.createdAt)}
                             </p>
                           </MDBCardHeader>
                           <MDBCardBody>
