@@ -133,6 +133,11 @@ export default function App() {
   };
 
   const sendMessage = async () => {
+    if (!message.trim()) {
+      // Don't send empty messages
+      return;
+    }
+
     const newMessage = {
       user: user_name,
       message: message,
@@ -298,10 +303,12 @@ export default function App() {
                   <MDBCardBody>
                     <li className="bg-white mb-3">
                       <MDBTextArea
+                        value={message}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" && !e.shiftKey) {
                             e.preventDefault();
                             sendMessage();
+                            setMessage("");
                           }
                         }}
                         onChange={setMessageList}
@@ -312,7 +319,10 @@ export default function App() {
                     </li>
                     <MDBCol>
                       <MDBBtn
-                        onClick={sendMessage}
+                        onClick={() => {
+                          sendMessage();
+                          setMessage("");
+                        }}
                         color="info"
                         rounded
                         className="float-end"

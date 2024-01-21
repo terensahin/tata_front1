@@ -21,6 +21,7 @@ import { useRef, useState, useEffect } from "react";
 import getMessage from "./getMessage";
 import { bufferToBase64 } from "../../../utils";
 import defaultImage from "../default.jpg";
+import { set } from "date-fns";
 
 var socket = io.connect("https://tata-mesagginn.onrender.com");
 
@@ -132,7 +133,12 @@ export default function App() {
     setMessage("");
   };
 
-  const sendMessage = async (e) => {
+  const sendMessage = async () => {
+    if (!message.trim()) {
+      // Don't send empty messages
+      return;
+    }
+
     const newMessage = {
       user: user_name,
       message: message,
@@ -305,10 +311,12 @@ export default function App() {
                   <MDBCardBody>
                     <li className="bg-white mb-3">
                       <MDBTextArea
+                        value={message}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" && !e.shiftKey) {
                             e.preventDefault();
                             sendMessage();
+                            setMessage("");
                           }
                         }}
                         onChange={setMessageList}
@@ -319,7 +327,10 @@ export default function App() {
                     </li>
                     <MDBCol>
                       <MDBBtn
-                        onClick={sendMessage}
+                        onClick={() => {
+                          sendMessage();
+                          setMessage("");
+                        }}
                         color="info"
                         rounded
                         className="float-end"
