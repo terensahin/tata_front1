@@ -162,8 +162,9 @@ const NewProfile = () => {
           
             }}
           >
-            <MDBCol>
-              <div className="rating-box">
+            <MDBCol >
+              <MDBRow style={{width: "885px"}}><div className="rating-box bg-secondary p-2 text-dark bg-opacity-10 pb-5
+              " style={{ backgroundColor: "#54B4D3", }}>
               <header style={{ color: '#6677ea' }}>How was your experience?</header>
 
                 <div className="stars" style={{ display: 'flex', justifyContent: 'center' }}>
@@ -185,12 +186,13 @@ const NewProfile = () => {
                   type="text"
                   onChange={(e) => setMessage(e.target.value)}
                 />
-              </div>
+              </div> </MDBRow>
+              
             </MDBCol>
-            <MDBRow style={{ marginTop: "20px", margin: "50px"}}>
+            <MDBRow style={{ marginTop: "20px", margin: "50px", marginLeft : "750px"}}>
               <MDBCol>
                 <MDBBtn disabled={isButtonDisabled || message.length < 50} onClick={createRating}>
-                  Apply
+                  Submit
                 </MDBBtn>
               </MDBCol>
             </MDBRow>
