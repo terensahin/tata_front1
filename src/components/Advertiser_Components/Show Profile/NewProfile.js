@@ -166,7 +166,7 @@ const NewProfile = () => {
               <div className="rating-box">
               <header style={{ color: '#6677ea' }}>How was your experience?</header>
 
-                <div className="stars">
+                <div className="stars" style={{ display: 'flex', justifyContent: 'center' }}>
                   {[1, 2, 3, 4, 5].map((index) => (
                     <i
                       key={index}
@@ -174,6 +174,7 @@ const NewProfile = () => {
                         index <= selectedRating ? " active" : ""
                       }`}
                       onClick={() => handleStarClick(index)}
+                      
                     ></i>
                   ))}
                 </div>
