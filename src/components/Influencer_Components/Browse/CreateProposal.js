@@ -366,41 +366,65 @@ export default function CampaignDetails() {
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="twitter fa-lg"
-                      style={{ color: "#55acee" }}
-                    />
+                    <a
+                      href={`https://twitter.com/${campaign.user.media_links[0].twitter}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="twitter fa-lg"
+                        style={{ color: "#55acee" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].twitter}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="instagram fa-lg"
-                      style={{ color: "#ac2bac" }}
-                    />
+                    <a
+                      href={`https://www.instagram.com/${campaign.user.media_links[0].instagram}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="instagram fa-lg"
+                        style={{ color: "#ac2bac" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].instagram}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="youtube fa-lg"
-                      style={{ color: "#cd201f" }}
-                    />
+                    <a
+                      href={`https://www.youtube.com/${campaign.user.media_links[0].youtube}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="youtube fa-lg"
+                        style={{ color: "#cd201f" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].youtube}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="fa-brands fa-tiktok"
-                      style={{ color: "#000000" }}
-                    />
+                    <a
+                      href={`https://www.tiktok.com/@${campaign.user.media_links[0].tiktok}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="fa-brands fa-tiktok"
+                        style={{ color: "#000000" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].tiktok}
                     </MDBCardText>
