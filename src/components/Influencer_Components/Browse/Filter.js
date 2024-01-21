@@ -5,6 +5,7 @@ import {
   MDBCol,
   MDBIcon,
   MDBCheckbox,
+  MDBBtn,
 } from "mdb-react-ui-kit";
 
 const FilterBar = ({ onFilterChange }) => {
@@ -23,6 +24,11 @@ const FilterBar = ({ onFilterChange }) => {
     // Apply filters immediately upon change
     onFilterChange(selectedFilters);
   }, [platformFilters, tagsFilters]);
+
+  const handleClearFilters = () => {
+    setPlatformFilters([]);
+    setTagsFilters([]);
+  };
 
   return (
     <MDBCol md="2">
@@ -397,6 +403,11 @@ const FilterBar = ({ onFilterChange }) => {
               }
             />
             {/* Add similar checkboxes for other tag filters */}
+          </div>
+          <div className="mt-5">
+            <MDBBtn color="danger" onClick={handleClearFilters}>
+              Clear Filters
+            </MDBBtn>
           </div>
         </MDBCardBody>
       </MDBCard>

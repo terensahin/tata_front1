@@ -89,7 +89,7 @@ function BrowseInf({ searchTerm, filters }) {
 
     // Apply filters based on the selected filters object
     const matchesTotalProposals =
-      !filters.totalProposals ||
+      filters.totalProposals === "" ||
       hashMap[influencer.user_id] > filters.totalProposals;
 
     // const matchesSubscribers =
@@ -126,15 +126,22 @@ function BrowseInf({ searchTerm, filters }) {
                     }
                   >
                     <MDBCardImage
-  src={
-    influencer.user_image
-      ? `data:image/jpeg;base64,${bufferToBase64(influencer.user_image.data)}`
-      : defaultImage
-  }
-  fluid
-  className="square bg-primary rounded-8 border-1"
-  style={{ margin: "10px", width: '150px', height: '175px', objectFit: 'cover',}} // Add this line
-/>
+                      src={
+                        influencer.user_image
+                          ? `data:image/jpeg;base64,${bufferToBase64(
+                              influencer.user_image.data
+                            )}`
+                          : defaultImage
+                      }
+                      fluid
+                      className="square bg-primary rounded-8 border-1"
+                      style={{
+                        margin: "10px",
+                        width: "150px",
+                        height: "175px",
+                        objectFit: "cover",
+                      }} // Add this line
+                    />
 
                     <a href="#!">
                       <div

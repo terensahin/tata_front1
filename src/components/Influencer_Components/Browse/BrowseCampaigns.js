@@ -77,10 +77,6 @@ function BrowseCampaigns({ searchTerm, filters }) {
     return matchesSearchTerm && matchesFilters;
   });
 
-  console.log("uzunluksafasfas:", filters.tags.length);
-  console.log("searchTerm:", searchTerm);
-  console.log("filters:", filters.platform);
-
   // Calculate the indexes of the campaigns to be displayed on the current page
   const indexOfLastCampaign = currentPage * campaignsPerPage;
   const indexOfFirstCampaign = indexOfLastCampaign - campaignsPerPage;
@@ -90,7 +86,6 @@ function BrowseCampaigns({ searchTerm, filters }) {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  console.log(campaigns);
 
   return (
     <MDBCol md="7">
