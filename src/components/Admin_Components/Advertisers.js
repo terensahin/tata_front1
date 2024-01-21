@@ -65,6 +65,7 @@ function Advertisers() {
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Edit</th>
           </tr>
         </MDBTableHead>
         <MDBTableBody>
@@ -101,13 +102,8 @@ function Advertisers() {
                   </div>
                 </td>
                 <td>
-                  <MDBBtn color="link" rounded size="sm">
+                  <MDBBtn color="primary" rounded size="sm">
                     Edit
-                  </MDBBtn>
-                </td>
-                <td>
-                  <MDBBtn color="link" rounded size="sm">
-                    Delete
                   </MDBBtn>
                 </td>
               </tr>
