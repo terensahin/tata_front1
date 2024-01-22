@@ -200,8 +200,8 @@ const CDetails = () => {
                         src={
                           c_data.campaign_image
                             ? `data:image/jpeg;base64,${bufferToBase64(
-                              c_data.campaign_image.data
-                            )}`
+                                c_data.campaign_image.data
+                              )}`
                             : defaultImage1
                         }
                         fluid
@@ -360,8 +360,8 @@ const CDetails = () => {
                     src={
                       c_data.user.user_image
                         ? `data:image/jpeg;base64,${bufferToBase64(
-                          c_data.user.user_image.data
-                        )}`
+                            c_data.user.user_image.data
+                          )}`
                         : defaultImage // Provide a placeholder image
                     }
                     alt="avatar"
@@ -373,34 +373,50 @@ const CDetails = () => {
                   <p className="text-muted mb-4">@{c_data.user.user_name}</p>
                   <p className="text-muted mb-4">
                     <MDBIcon>
-                    <div className="d-flex">
-                      {(() => {
-                        const stars = [];
-                        for (var i = 0; i < Math.floor(rating_average); i++) {
-                          stars.push(
-                            <MDBCol md="1" key={i} style={{marginRight:"10px"}}> {/* Add margin to create space */}
-                            <FontAwesomeIcon icon={faStar} />
-                          </MDBCol>
-                          );
-                        }
+                      <div className="d-flex">
+                        {(() => {
+                          const stars = [];
+                          for (var i = 0; i < Math.floor(rating_average); i++) {
+                            stars.push(
+                              <MDBCol
+                                md="1"
+                                key={i}
+                                style={{ marginRight: "10px" }}
+                              >
+                                {" "}
+                                {/* Add margin to create space */}
+                                <FontAwesomeIcon icon={faStar} />
+                              </MDBCol>
+                            );
+                          }
 
-                        // Check if there's a half star to add
-                        if (rating_average % 1 >= 0.5) {
-                          stars.push(
-                            <MDBCol md="1" key={"half"} style={{marginRight:"10px"}}> {/* Add margin to create space */}
-                            <FontAwesomeIcon icon={faStarHalfAlt} />
-                          </MDBCol>
-                          );
-                        }
+                          // Check if there's a half star to add
+                          if (rating_average % 1 >= 0.5) {
+                            stars.push(
+                              <MDBCol
+                                md="1"
+                                key={"half"}
+                                style={{ marginRight: "10px" }}
+                              >
+                                {" "}
+                                {/* Add margin to create space */}
+                                <FontAwesomeIcon icon={faStarHalfAlt} />
+                              </MDBCol>
+                            );
+                          }
 
-                        return stars;
-                      })()}
+                          return stars;
+                        })()}
                       </div>
                     </MDBIcon>
                     ({rating_average.toFixed(1)}) {review_counter} Reviews
                   </p>
                   <div className="d-flex justify-content-center mb-2">
-                    <MDBBtn outline className="ms-1" onClick={() => navigate("/ShowAllMessages")}>
+                    <MDBBtn
+                      outline
+                      className="ms-1"
+                      onClick={() => navigate("/ShowAllMessages")}
+                    >
                       Message
                     </MDBBtn>
                   </div>
@@ -411,41 +427,65 @@ const CDetails = () => {
                 <MDBCardBody className="p-0">
                   <MDBListGroup flush className="rounded-3">
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                      <MDBIcon
-                        fab
-                        icon="twitter fa-lg"
-                        style={{ color: "#55acee" }}
-                      />
+                      <a
+                        href={`https://twitter.com/${c_data.user.media_links[0].twitter}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MDBIcon
+                          fab
+                          icon="twitter fa-lg"
+                          style={{ color: "#55acee" }}
+                        />
+                      </a>
                       <MDBCardText>
                         {c_data.user.media_links[0].twitter}
                       </MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                      <MDBIcon
-                        fab
-                        icon="instagram fa-lg"
-                        style={{ color: "#ac2bac" }}
-                      />
+                      <a
+                        href={`https://www.instagram.com/${c_data.user.media_links[0].instagram}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MDBIcon
+                          fab
+                          icon="instagram fa-lg"
+                          style={{ color: "#ac2bac" }}
+                        />
+                      </a>
                       <MDBCardText>
                         {c_data.user.media_links[0].instagram}
                       </MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                      <MDBIcon
-                        fab
-                        icon="youtube fa-lg"
-                        style={{ color: "#3b5998" }}
-                      />
+                      <a
+                        href={`https://www.youtube.com/${c_data.user.media_links[0].youtube}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MDBIcon
+                          fab
+                          icon="youtube fa-lg"
+                          style={{ color: "#cd201f" }}
+                        />
+                      </a>
                       <MDBCardText>
                         {c_data.user.media_links[0].youtube}
                       </MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                      <MDBIcon
-                        fab
-                        icon="fa-brands fa-tiktok"
-                        style={{ color: "#3b5998" }}
-                      />
+                      <a
+                        href={`https://www.tiktok.com/@${c_data.user.media_links[0].tiktok}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MDBIcon
+                          fab
+                          icon="fa-brands fa-tiktok"
+                          style={{ color: "#000000" }}
+                        />
+                      </a>
                       <MDBCardText>
                         {c_data.user.media_links[0].tiktok}
                       </MDBCardText>
@@ -470,9 +510,15 @@ const CDetails = () => {
               <MDBCardBody>
                 <MDBCardBody className="square border border-3">
                   <MDBRow>
-                    <MDBCardHeader style={{ fontSize: "15px", cursor: "pointer" }}
-                      onClick={() => navigate(`/ShowProfile/${data.belongsToUser.user_id}`)}>
-                      📊 {data.belongsToUser.name} | 🎨 {data.belongsToUser.email} | 💡 {data.belongsToUser.user_name}
+                    <MDBCardHeader
+                      style={{ fontSize: "15px", cursor: "pointer" }}
+                      onClick={() =>
+                        navigate(`/ShowProfile/${data.belongsToUser.user_id}`)
+                      }
+                    >
+                      📊 {data.belongsToUser.name} | 🎨{" "}
+                      {data.belongsToUser.email} | 💡{" "}
+                      {data.belongsToUser.user_name}
                     </MDBCardHeader>
                     <MDBCardBody>
                       <MDBCardText style={{ marginTop: "10px" }}>

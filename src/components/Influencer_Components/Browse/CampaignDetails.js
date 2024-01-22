@@ -40,15 +40,14 @@ export default function CampaignDetails() {
   const cookies = new Cookies(null, { path: "/" });
   const token = cookies.get("token");
   const user_id = cookies.get("user_id");
- 
 
   const { id } = useParams();
   const [selectedRating, setSelectedRating] = useState(0);
   const handleStarClick = (index) => {
     setSelectedRating(index);
   };
-  console.log("id",id)
-  console.log("user_id",user_id)
+  console.log("id", id);
+  console.log("user_id", user_id);
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -60,7 +59,7 @@ export default function CampaignDetails() {
   };
   const result = useQuery(["abcd", id, token], fetchCampaign);
   const result2 = useQuery(["abcd", id, token, provide], fetchComments);
-  
+
   if (result.isLoading || result2.isLoading) {
     return (
       <MDBSpinner role="status">
@@ -68,15 +67,12 @@ export default function CampaignDetails() {
       </MDBSpinner>
     );
   }
-  
 
-  
- 
-  console.log("camp",result);
+  console.log("camp", result);
   var rating_sum = 0;
   var rating_average = 0;
   var counter = 0;
- var review_counter = result.data.campaign[0].user.rating.length;
+  var review_counter = result.data.campaign[0].user.rating.length;
   if (result.data.campaign[0].user.rating != undefined) {
     for (var i = 0; i < result.data.campaign[0].user.rating.length; i++) {
       rating_sum += result.data.campaign[0].user.rating[i].rating;
@@ -344,32 +340,44 @@ export default function CampaignDetails() {
 
                 <p className="text-muted mb-4">@{campaign.user.user_name}</p>
                 <p className="text-muted mb-4">
-                <MDBIcon>
+                  <MDBIcon>
                     <div className="d-flex">
                       {(() => {
                         const stars = [];
                         for (var i = 0; i < Math.floor(rating_average); i++) {
                           stars.push(
-                            <MDBCol md="1" key={i} style={{marginRight:"10px"}}> {/* Add margin to create space */}
-                            <FontAwesomeIcon icon={faStar} />
-                          </MDBCol>
+                            <MDBCol
+                              md="1"
+                              key={i}
+                              style={{ marginRight: "10px" }}
+                            >
+                              {" "}
+                              {/* Add margin to create space */}
+                              <FontAwesomeIcon icon={faStar} />
+                            </MDBCol>
                           );
                         }
 
                         // Check if there's a half star to add
                         if (rating_average % 1 >= 0.5) {
                           stars.push(
-                            <MDBCol md="1" key={"half"} style={{marginRight:"10px"}}> {/* Add margin to create space */}
-                            <FontAwesomeIcon icon={faStarHalfAlt} />
-                          </MDBCol>
+                            <MDBCol
+                              md="1"
+                              key={"half"}
+                              style={{ marginRight: "10px" }}
+                            >
+                              {" "}
+                              {/* Add margin to create space */}
+                              <FontAwesomeIcon icon={faStarHalfAlt} />
+                            </MDBCol>
                           );
                         }
 
                         return stars;
                       })()}
-                      </div>
-                    </MDBIcon>{""}
-                    ({rating_average.toFixed(1)}) {review_counter} Reviews
+                    </div>
+                  </MDBIcon>
+                  {""}({rating_average.toFixed(1)}) {review_counter} Reviews
                 </p>
                 <div className="d-flex justify-content-center mb-2">
                   <MDBBtn
@@ -387,41 +395,65 @@ export default function CampaignDetails() {
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="twitter fa-lg"
-                      style={{ color: "#55acee" }}
-                    />
+                    <a
+                      href={`https://twitter.com/${campaign.user.media_links[0].twitter}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="twitter fa-lg"
+                        style={{ color: "#55acee" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].twitter}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="instagram fa-lg"
-                      style={{ color: "#ac2bac" }}
-                    />
+                    <a
+                      href={`https://www.instagram.com/${campaign.user.media_links[0].instagram}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="instagram fa-lg"
+                        style={{ color: "#ac2bac" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].instagram}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="youtube fa-lg"
-                      style={{ color: "#cd201f" }}
-                    />
+                    <a
+                      href={`https://www.youtube.com/${campaign.user.media_links[0].youtube}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="youtube fa-lg"
+                        style={{ color: "#cd201f" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].youtube}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon
-                      fab
-                      icon="fa-brands fa-tiktok"
-                      style={{ color: "#000000" }}
-                    />
+                    <a
+                      href={`https://www.tiktok.com/@${campaign.user.media_links[0].tiktok}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MDBIcon
+                        fab
+                        icon="fa-brands fa-tiktok"
+                        style={{ color: "#000000" }}
+                      />
+                    </a>
                     <MDBCardText>
                       {campaign.user.media_links[0].tiktok}
                     </MDBCardText>

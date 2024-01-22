@@ -20,6 +20,7 @@ import defaultImage from "../Influencer_Components/default.jpg";
 import Users from "./Users";
 
 function Influencers() {
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState("");
   const cookies = new Cookies(null, { path: "/" });
   const token = cookies.get("token");
@@ -63,6 +64,7 @@ function Influencers() {
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Action</th>
           </tr>
         </MDBTableHead>
         <MDBTableBody>
@@ -99,13 +101,13 @@ function Influencers() {
                   </div>
                 </td>
                 <td>
-                  <MDBBtn color="link" rounded size="sm">
+                  <MDBBtn color="primary" rounded size="sm"
+                  onClick={
+                    () => {
+                      navigate(`/editUser/${influencer.user_id}`) // navi	
+                    }
+                  }>
                     Edit
-                  </MDBBtn>
-                </td>
-                <td>
-                  <MDBBtn color="link" rounded size="sm">
-                    Delete
                   </MDBBtn>
                 </td>
               </tr>
