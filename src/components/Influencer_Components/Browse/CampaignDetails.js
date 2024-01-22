@@ -34,6 +34,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import fetchComments from "./fetchComments";
 export default function CampaignDetails() {
+  const [isClicked, setIsClicked] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const cookies = new Cookies(null, { path: "/" });
@@ -111,6 +112,7 @@ export default function CampaignDetails() {
           autoClose: 4000,
         });
       });
+      setIsClicked(true);
   };
   return (
     <section style={{ backgroundColor: "" }}>
@@ -471,9 +473,12 @@ export default function CampaignDetails() {
               </MDBCol>
               <MDBRow style={{ marginTop: "20px", margin: "50px", marginLeft : "600px"}}>
                 <MDBCol>
-                  <MDBBtn disabled={message.length < 50} onClick={createRating}>
-                    Apply
-                  </MDBBtn>
+                <MDBBtn 
+      disabled={isClicked || message.length < 50} 
+      onClick={createRating}
+    >
+      Apply
+    </MDBBtn>
                 </MDBCol>
               </MDBRow>
             </MDBRow>
