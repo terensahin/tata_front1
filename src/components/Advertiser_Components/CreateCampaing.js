@@ -337,7 +337,7 @@ const CreateCampaign = () => {
                   </h6>
                 </MDBCol>
                 <MDBCol md="10" className="justify-content-start">
-                  <MDBInput
+                  <MDBTextArea
                     label="Campaign Description"
                     id="formControlDefault2"
                     type="text"
