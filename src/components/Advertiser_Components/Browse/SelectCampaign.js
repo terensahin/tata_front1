@@ -77,7 +77,7 @@ const SelectCampaign = () => {
       template_params: {
         from_name: user_name,
         to_email: result_user.data.user.email,
-        message: `You have been invited to campaign https://tata-backend.onrender.com/CampaignDetails/${id}`,
+        message: `You have been invited to campaign https://tata-front-end.onrender.com/CampaignDetails/${id}`,
         "g-recaptcha-response": "03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...",
       },
     };
