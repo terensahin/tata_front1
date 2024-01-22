@@ -41,7 +41,7 @@ const ForgotPassword = () => {
       template_params: {
         from_name: "Tata Team",
         to_email: email,
-        message: `Click this url if you submitted the password change http://localhost:3000/ChangeRequest/${email}/${encode(
+        message: `Click this url if you submitted the password change https://tata-front-end.onrender.com/ChangeRequest/${email}/${encode(
           password
         )}`,
         "g-recaptcha-response": "03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...",
